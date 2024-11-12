@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const sourGummy = localFont({
+  src: "./fonts/SourGummyVF.ttf",
+  variable: "--font-sour-gummy",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,12 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider afterSignOutUrl="/sign-in">
+      <html lang="en">
+        <body
+          className={`${sourGummy.variable} antialiased`}
+        >
+          <div className='w-full h-screen px-0 md:px-5 flex justify-center items-center bg-gradient-to-r from-custom-400 via-custom-500 to-custom-600'>
+            {children}
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

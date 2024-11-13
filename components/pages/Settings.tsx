@@ -8,12 +8,12 @@ const Settings = () => {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div>
+    <div className="h-full overflow-hidden">
       <h2 className="dark:text-gray-200 text-2xl font-sour-gummy mb-8 tracking-wide">
         Settings
       </h2>
 
-      <div className="overflow-y-scroll lg:overflow-y-hidden">
+      <div className="overflow-y-scroll lg:overflow-y-hidden h-screen">
         <h3 className="text-gray-500 text-xl font-sour-gummy mb-2 font-light">UI Settings</h3>
         <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-8 mb-12 gap-4">
           <div>

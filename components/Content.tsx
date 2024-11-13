@@ -1,47 +1,65 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
-import {
-  IconMessageCircle,
-  IconChartArcs,
-  IconUsersGroup,
-  IconSettingsAutomation,
-} from "@tabler/icons-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { SignedIn, UserButton } from '@clerk/nextjs'
+import { SignedIn, UserButton, useUser } from '@clerk/nextjs'
+import ChatIcon from "./icons/ChatIcon";
+import SettingsIcon from "./icons/SettingsIcon";
+import StatusIcon from "./icons/StatusIcon";
+import CommunityIcon from "./icons/CommunityIcon";
+import { useTheme } from "next-themes";
+import FriendsIcon from "./icons/FriendsIcon";
 
 export function Content({ children, nickname }: { children: React.ReactNode, nickname: string }) {
     const [open, setOpen] = useState(false);
+    const { theme } = useTheme();
+
+    const { user } = useUser();
+    const [username, setUsername] = useState(nickname);
+
+    useEffect(() => {
+        if (user) {
+            const newNickname = user.username || user.firstName || "User";
+            setUsername(newNickname);
+        }
+    }, [user]);
 
     const links = [
         {
             label: "Chats",
             href: "/chats",
             icon: (
-                <IconMessageCircle className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+                <ChatIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
             ),
         },
         {
             label: "Status",
             href: "/status",
             icon: (
-                <IconChartArcs className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+                <StatusIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
+            ),
+        },
+        {
+            label: "Friends",
+            href: "/friends",
+            icon: (
+                <FriendsIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
             ),
         },
         {
             label: "Communities",
             href: "/communities",
             icon: (
-                <IconUsersGroup className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+                <CommunityIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
             ),
         },
         {
-            label: "UI Settings",
+            label: "Settings",
             href: "/settings",
             icon: (
-                <IconSettingsAutomation className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+                <SettingsIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
             ),
         }
     ];
@@ -70,7 +88,7 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
                             </div>
                             <div className="flex items-center gap-4">
                                 <UserButton />
-                                <span className="font-sour-gummy text-lg text-gray-600">{nickname}</span>
+                                <span className="font-sour-gummy text-lg text-gray-600 dark:text-neutral-300">{username}</span>
                             </div>
                         </SidebarBody>
                     </Sidebar>

@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full space-y-4 relative">
         <h1 className="text-3xl font-bold text-custom-600 font-sour-gummy">Welcome to Chatify 👋</h1>
-        <p className="text-lg text-gray-400 font-sour-gummy">Start a chat with your friends</p>
+        <p className="text-lg text-gray-400 font-sour-gummy">Start a chat with your friends and family</p>
 
         <div className="flex flex-col items-center space-y-4">
             <Link href="/chats" className="relative inline-block text-lg group">

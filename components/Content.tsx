@@ -11,6 +11,7 @@ import StatusIcon from "./icons/StatusIcon";
 import CommunityIcon from "./icons/CommunityIcon";
 import { useTheme } from "next-themes";
 import FriendsIcon from "./icons/FriendsIcon";
+import FullscreenToggle from "./FullscreenToggle";
 
 export function Content({ children, nickname }: { children: React.ReactNode, nickname: string }) {
     const [open, setOpen] = useState(false);
@@ -91,7 +92,10 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
                             </div>
                         </SidebarBody>
                     </Sidebar>
-                    <div className="flex flex-1">
+                    <div className="flex flex-1 relative">
+                        <div className="absolute md:top-2 right-2 bottom-2">
+                            <FullscreenToggle />
+                        </div>
                         <div className="p-2 md:p-10 rounded-none md:rounded-tl-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 overflow-y-auto">
                             {children}
                         </div>

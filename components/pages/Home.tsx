@@ -7,7 +7,7 @@ import {
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-full space-y-4 relative">
+    <div className="flex flex-col items-center justify-center space-y-4 relative h-screen -mt-28 md:mt-0">
         <h1 className="text-3xl font-bold text-custom-600 font-sour-gummy">Welcome to Chatify 👋</h1>
         <p className="text-lg text-gray-400 font-sour-gummy">Start a chat with your friends and family</p>
 

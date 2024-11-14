@@ -69,8 +69,7 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
             <SignedIn>
                 <div
                     className={cn(
-                        "md:rounded-xl flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 max-w-7xl mx-auto border border-neutral-200 dark:border-neutral-700",
-                        "h-screen md:h-[80vh]" // for your use case, use `h-screen` instead of `h-[60vh]`
+                        "md:rounded-xl flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 max-w-7xl mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden md:h-[40rem] h-full"
                     )}
                 >
                     <Sidebar open={open} setOpen={setOpen} animate={false}>
@@ -93,7 +92,7 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
                         </SidebarBody>
                     </Sidebar>
                     <div className="flex flex-1">
-                        <div className="p-2 md:p-10 rounded-none md:rounded-tl-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1">
+                        <div className="p-2 md:p-10 rounded-none md:rounded-tl-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 overflow-y-auto">
                             {children}
                         </div>
                     </div>

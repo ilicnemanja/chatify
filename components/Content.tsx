@@ -70,7 +70,7 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
             <SignedIn>
                 <div
                     className={cn(
-                        "md:rounded-xl flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 max-w-7xl mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden md:h-[40rem] h-full"
+                        "md:rounded-xl flex flex-col md:flex-row bg-white md:bg-gray-100 dark:bg-neutral-800 w-full flex-1 max-w-7xl mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden md:h-[40rem] h-full"
                     )}
                 >
                     <Sidebar open={open} setOpen={setOpen} animate={false}>
@@ -96,7 +96,7 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
                         <div className="hidden md:block md:absolute md:top-2 md:right-2">
                             <FullscreenToggle />
                         </div>
-                        <div className="p-2 md:p-10 rounded-none md:rounded-tl-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 overflow-y-auto">
+                        <div className="p-2 md:p-10 rounded-none md:rounded-tl-xl border-none md:border md:border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 overflow-y-auto">
                             {children}
                         </div>
                     </div>

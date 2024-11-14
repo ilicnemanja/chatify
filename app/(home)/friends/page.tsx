@@ -1,4 +1,4 @@
-import Friends from '@/components/pages/Friends'
+import Friends from '@/components/pages/friends/Friends'
 
 const Page = () => {
   return (

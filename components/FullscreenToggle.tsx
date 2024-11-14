@@ -1,20 +1,26 @@
-"use client"
 import { useState } from 'react';
 import {
     Maximize,
     Minimize2 as Minimize,
 } from "lucide-react"
 
-export default function FullscreenToggle() {
+export default function FullscreenToggle({ onFullScreenChange }: { onFullScreenChange: (state: boolean) => void }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const fullscreenCallback = (state: boolean) => {
+    setIsFullscreen(state);
+    onFullScreenChange(state);
+  }
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
-      setIsFullscreen(true);
+      // callback
+      fullscreenCallback(true);
     } else if (document.exitFullscreen) {
       document.exitFullscreen();
-      setIsFullscreen(false);
+      // callback
+      fullscreenCallback(false);
     }
   };
 

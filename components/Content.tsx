@@ -15,10 +15,15 @@ import FullscreenToggle from "./FullscreenToggle";
 
 export function Content({ children, nickname }: { children: React.ReactNode, nickname: string }) {
     const [open, setOpen] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
     const { theme } = useTheme();
 
     const { user } = useUser();
     const [username, setUsername] = useState(nickname);
+
+    const handleFullScreenChange = (state: boolean) => {
+        setIsFullscreen(state);
+    };
 
     useEffect(() => {
         if (user) {
@@ -70,7 +75,8 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
             <SignedIn>
                 <div
                     className={cn(
-                        "md:rounded-xl flex flex-col md:flex-row bg-white md:bg-gray-100 dark:bg-neutral-900 md:dark:bg-neutral-800 w-full flex-1 max-w-7xl mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden md:h-[40rem] h-full"
+                        `md:rounded-xl flex flex-col md:flex-row bg-white md:bg-gray-100 dark:bg-neutral-900 md:dark:bg-neutral-800 flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden ${
+                            isFullscreen ? 'h-full md:h-screen md:w-screen md:rounded-none' : 'w-full max-w-7xl h-full md:h-[40rem] md:mx-5'}`
                     )}
                 >
                     <Sidebar open={open} setOpen={setOpen} animate={false}>
@@ -94,9 +100,9 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
                     </Sidebar>
                     <div className="overflow-y-auto md:flex md:flex-1 md:relative">
                         <div className="hidden md:block md:absolute md:top-2 md:right-2">
-                            <FullscreenToggle />
+                            <FullscreenToggle onFullScreenChange={handleFullScreenChange} />
                         </div>
-                        <div className="p-2 md:p-10 rounded-none md:rounded-tl-xl border-none md:border md:border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 overflow-y-auto">
+                        <div className={`p-2 md:p-10 rounded-none md:rounded-tl-xl border-none md:border md:border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 overflow-y-auto`}>
                             {children}
                         </div>
                     </div>

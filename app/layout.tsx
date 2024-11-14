@@ -27,7 +27,7 @@ export default function RootLayout({
         <body
           className={`${sourGummy.variable} antialiased`}
         >
-          <div className='w-full h-screen px-0 md:px-5 flex justify-center items-center bg-gradient-to-r from-custom-400 via-custom-500 to-custom-600'>
+          <div className='w-full h-screen px-0 flex justify-center items-center bg-gradient-to-r from-custom-400 via-custom-500 to-custom-600'>
             <ThemeProvider
               attribute="class"
               defaultTheme="light"

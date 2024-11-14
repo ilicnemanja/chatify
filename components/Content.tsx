@@ -70,7 +70,7 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
             <SignedIn>
                 <div
                     className={cn(
-                        "md:rounded-xl flex flex-col md:flex-row bg-white md:bg-gray-100 dark:bg-neutral-800 w-full flex-1 max-w-7xl mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden md:h-[40rem] h-full"
+                        "md:rounded-xl flex flex-col md:flex-row bg-white md:bg-gray-100 dark:bg-neutral-900 md:dark:bg-neutral-800 w-full flex-1 max-w-7xl mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden md:h-[40rem] h-full"
                     )}
                 >
                     <Sidebar open={open} setOpen={setOpen} animate={false}>

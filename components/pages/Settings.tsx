@@ -8,7 +8,7 @@ const Settings = () => {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div className="h-4/5">
+    <div className="h-full md:h-4/5">
       <h2 className="dark:text-gray-200 text-2xl font-sour-gummy mb-8 tracking-wide">
         Settings
       </h2>
@@ -90,7 +90,7 @@ const Settings = () => {
         </div>
 
         <h3 className="text-gray-500 text-xl font-sour-gummy mb-2 font-light">Privacy Settings</h3>
-        <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-4">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-4 mb-12 md:mb-0">
           <div>
             <div>
               <h3 className="text-[#6439FF] text-lg font-sour-gummy mb-1 tracking-wide">

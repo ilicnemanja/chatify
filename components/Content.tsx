@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
+import { Sidebar, SidebarBody, SidebarLink, useSidebar } from "./ui/sidebar";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -92,8 +92,8 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
                             </div>
                         </SidebarBody>
                     </Sidebar>
-                    <div className="flex flex-1 relative">
-                        <div className="absolute md:top-2 right-2 bottom-2">
+                    <div className="overflow-y-auto md:flex md:flex-1 md:relative">
+                        <div className="hidden md:block md:absolute md:top-2 md:right-2">
                             <FullscreenToggle />
                         </div>
                         <div className="p-2 md:p-10 rounded-none md:rounded-tl-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 overflow-y-auto">
@@ -107,8 +107,10 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
 }
 
 export const Logo = () => {
+    const { setOpen } = useSidebar();
   return (
     <Link
+      onClick={() => setOpen((prev) => !prev)}
       href="/"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >

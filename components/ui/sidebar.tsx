@@ -164,11 +164,14 @@ export const SidebarLink = ({
   link: Links;
   className?: string;
   isDisabled?: boolean;
+
   props?: LinkProps;
 }) => {
-  const { open, animate } = useSidebar();
+  const { open, animate, setOpen } = useSidebar();
+  
   return (
     <Link
+      onClick={() => setOpen((prev) => !prev)}
       aria-disabled={isDisabled}
       href={link.href}
       className={cn(

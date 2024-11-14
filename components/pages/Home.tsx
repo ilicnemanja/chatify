@@ -7,7 +7,8 @@ import {
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-full space-y-4 relative">
+    <div className='h-screen'>
+        <div className="flex flex-col items-center justify-center h-full space-y-4 relative">
         <h1 className="text-3xl font-bold text-custom-600 font-sour-gummy">Welcome to Chatify 👋</h1>
         <p className="text-lg text-gray-400 font-sour-gummy">Start a chat with your friends and family</p>
 
@@ -25,6 +26,7 @@ const Home = () => {
         <div className='absolute bottom-0 text-gray-400 text-sm flex justify-center items-center gap-2 font-sour-gummy'>
             <IconLockSquareRounded /> Your personal messages are end-to-end encrypted
         </div>
+    </div>
     </div>
     )
 }

@@ -1,4 +1,4 @@
-import Chats from '@/components/pages/Chats'
+import Chats from '@/components/pages/chats/Chats'
 
 const Page = () => {
   return (

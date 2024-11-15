@@ -3,7 +3,126 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+const DummyFriends = [
+  {
+    id: 1,
+    name: "Milos Djukic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/collie-border/n02106166_7454.jpg",
+    isClosed: true,
+  },
+  {
+    id: 2,
+    name: "Stefan Petkovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/lhasa/n02098413_2199.jpg",
+    isClosed: false,
+  },
+  {
+    id: 3,
+    name: "Sasa Kuzmanovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/pekinese/n02086079_2933.jpg",
+    isClosed: false,
+  },
+  {
+    id: 4,
+    name: "Jovana Cvetkovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/spitz-japanese/beet-005.jpg",
+    isClosed: false,
+  },
+  {
+    id: 5,
+    name: "Strahinja Djukic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/terrier-cairn/n02096177_2854.jpg",
+    isClosed: false,
+  },
+  {
+    id: 6,
+    name: "Milos Micevic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/terrier-bedlington/n02093647_2156.jpg",
+    isClosed: false,
+  },
+  {
+    id: 7,
+    name: "Nikola Jovanovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/maltese/n02085936_10307.jpg",
+    isClosed: true,
+  },
+  {
+    id: 8,
+    name: "Mihajlo Miladinovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/hound-english/n02089973_3074.jpg",
+    isClosed: true,
+  },
+  {
+    id: 9,
+    name: "Miljan Pantovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/spaniel-irish/n02102973_4821.jpg",
+    isClosed: false,
+  },
+  {
+    id: 10,
+    name: "Jovana Jeftic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/labradoodle/Cali.jpg",
+    isClosed: false,
+  },
+  {
+    id: 11,
+    name: "Pera Ilic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/pitbull/dog-3981540_1280.jpg",
+    isClosed: false,
+  },
+  {
+    id: 12,
+    name: "Ana Jovanovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/havanese/00100trPORTRAIT_00100_BURST20191126134713895_COVER.jpg",
+    isClosed: false,
+  },
+  {
+    id: 13,
+    name: "Milan Djukic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/sharpei/noel.jpg",
+    isClosed: false,
+  },
+  {
+    id: 14,
+    name: "Nenad Savic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/schnauzer-giant/n02097130_4265.jpg",
+    isClosed: false,
+  },
+  {
+    id: 15,
+    name: "Luka Hadzimirovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/kuvasz/n02104029_4660.jpg",
+    isClosed: false,
+  },
+  {
+    id: 16,
+    name: "Petar Petrovic",
+    lastActive: new Date(Date.now()),
+    profilePicture: "https://images.dog.ceo/breeds/corgi-cardigan/n02113186_694.jpg",
+    isClosed: false,
+  }
+];
+
 const Friends = () => {
+
+  const filteredAndSortedCloseFriends = DummyFriends.sort((a, b) => a.name.localeCompare(b.name)).filter((chat) => chat.isClosed === true);
+  const sortedAllFriends = DummyFriends.sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <div className="md:h-4/5">
       <div className="flex justify-between items-center mb-8">
@@ -17,291 +136,61 @@ const Friends = () => {
         <h3 className="text-gray-500 text-xl font-sour-gummy mb-6 font-light">
           Close Friends
         </h3>
-        <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-8 mb-12 gap-0">
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
+        <div className="grid sm:grid-cols-1 gap-y-8 mb-12 gap-0">
+          {
+            filteredAndSortedCloseFriends.map((chat, index) => (
+              <div key={chat.id} className={`${index > 0 ? "-mt-5" : "mt-0"}`}>
+                <div className="flex flex-row items-center gap-2 pb-2">
+                  <div className="w-12 h-12 overflow-hidden rounded-full border-2 border-gray-200 bg-gray-200">
+                    <Image 
+                      src={chat.profilePicture} 
+                      alt="Placeholder image" 
+                      width={48} 
+                      height={48} 
+                      className="object-cover cursor-pointer" 
+                    />
+                  </div>
+                  <div>
+                    <p className="text-[#6439FF] dark:text-custom-200 text-xl font-sour-gummy tracking-wide cursor-pointer">
+                      {chat.name}
+                    </p>
+                    <span className="text-gray-400 text-sm font-sour-gummy">last active {formatDateWithTime(chat.lastActive)}</span>
+                  </div>
+                </div>
+                {index < filteredAndSortedCloseFriends.length-1 && <hr className="w-[90%] text-neutral-200 dark:border-neutral-800" />}
               </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
+            ))
+          }
         </div>
 
         <h3 className="text-gray-500 text-xl font-sour-gummy mb-6 font-light">
           All Friends
         </h3>
-        <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-8 mb-12 gap-0">
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
+        <div className="grid sm:grid-cols-1 gap-y-8 mb-12 gap-0">
+          {
+            sortedAllFriends.map((chat, index) => (
+              <div key={chat.id} className={`${index > 0 ? "-mt-5" : "mt-0"}`}>
+                <div className="flex flex-row items-center gap-2 pb-2">
+                  <div className="w-12 h-12 overflow-hidden rounded-full border-2 border-gray-200 bg-gray-200">
+                    <Image 
+                      src={chat.profilePicture} 
+                      alt="Placeholder image" 
+                      width={48} 
+                      height={48} 
+                      className="object-cover cursor-pointer" 
+                    />
+                  </div>
+                  <div>
+                    <p className="text-[#6439FF] dark:text-custom-200 text-xl font-sour-gummy tracking-wide cursor-pointer">
+                      {chat.name}
+                    </p>
+                    <span className="text-gray-400 text-sm font-sour-gummy">last active {formatDateWithTime(chat.lastActive)}</span>
+                  </div>
+                </div>
+                {index < sortedAllFriends.length-1 && <hr className="w-[90%] text-neutral-200 dark:border-neutral-800" />}
               </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-row items-center gap-2">
-              <div className="w-12 h-12 overflow-hidden rounded-full">
-                <Image 
-                  src="https://placehold.co/48x48.png" 
-                  alt="Placeholder image" 
-                  width={48} 
-                  height={48} 
-                  className="object-cover cursor-pointer" 
-                />
-              </div>
-              <div>
-                <p className="text-[#6439FF] text-xl font-sour-gummy tracking-wide cursor-pointer">
-                  John Doe
-                </p>
-                <span className="text-gray-400 text-sm">last active {formatDateWithTime(new Date(Date.now()))}</span>
-              </div>
-            </div>
-          </div>
+            ))
+          }
         </div>
       </div>
     </div>

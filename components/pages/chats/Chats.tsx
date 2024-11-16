@@ -99,7 +99,7 @@ const Chats = () => {
           }
         </div>
 
-        {/* TODO: work on this part */}
+        {/* // TODO: work on this part, add groups */}
         {/* <h3 className="dark:text-gray-200 text-2xl font-sour-gummy tracking-wide mb-6">
           Groups
         </h3>

@@ -1,10 +1,10 @@
 "use client";
-import { IPost } from "@/types/post.type";
-import { ParallaxScroll } from "./ui/parallax-scroll";
+// import { IPost } from "@/types/post.type";
 
-export function ProfilePosts({ posts }: { posts: IPost[] }) {
+// { posts }: { posts: IPost[] }
+export function ProfilePosts() {
 
-    const images = posts.map(post => post.image);
+  // const images = posts.map(post => post.image);
 
-  return <ParallaxScroll images={images} />;
+  return "ProfilePosts";
 }

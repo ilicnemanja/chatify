@@ -1,11 +1,12 @@
-import { ProfilePosts } from '@/components/ProfilePosts'
+// import { ProfilePosts } from '@/components/ProfilePosts'
 import { formatDateWithTime } from '@/lib/utils'
-import { IPost } from '@/types/post.type'
+// import { IPost } from '@/types/post.type'
 import { IUser } from '@/types/user.type'
 import Image from 'next/image'
 import React from 'react'
 
-const Profile = ({ user, posts }: { user: IUser, posts: IPost[] }) => {
+// { user, posts }: { user: IUser, posts: IPost[] }
+const Profile = ({ user }: { user: IUser }) => {
   return (
     <div className='overflow-hidden'>
       <div className="flex flex-col items-center gap-4">
@@ -19,9 +20,11 @@ const Profile = ({ user, posts }: { user: IUser, posts: IPost[] }) => {
         <p className="text-gray-400 dark:text-neutral-100 text-sm font-sour-gummy">last active {formatDateWithTime(user.lastActive)}</p>
       </div>
       <hr className="my-4 border-gray-200 dark:border-neutral-800" />
-      <div className=''>
+
+      {/* // TODO: Add component for posts */}
+      {/* <div className=''>
         <ProfilePosts posts={posts} />
-      </div>
+      </div> */}
     </div>
   )
 }

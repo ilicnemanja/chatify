@@ -4,7 +4,6 @@ import Home from "@/components/pages/Home"
 const Page = async () => {
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/health`);
-  console.log(response)
 
   if (!response.ok) {
     return (

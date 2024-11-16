@@ -1,18 +1,8 @@
 import Profile from '@/components/pages/profile/Profile'
 // import { IPost } from '@/types/post.type'
-import { IUser } from '@/types/user.type'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
-const dummyUser: IUser = {
-  id: 1,
-  name: "Milos Djukic",
-  username: "milosdjukic",
-  lastActive: new Date(Date.now()),
-  profilePicture: "https://images.dog.ceo/breeds/pitbull/dog-3981540_1280.jpg",
-  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  email: 'milosdjukic@gmail.com'
-}
 
 // const dummyPosts: IPost[] = [
 //   {
@@ -81,10 +71,10 @@ const Page = async ({ params }: { params: Promise<{ username: string }> }) => {
 
   // TODO: Fetch user and posts from API
 
-  const user = dummyUser;
+  const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${username}`).then(res => res.json());
   // const posts = dummyPosts;
   
-  if (!username) notFound()
+  if (!user) notFound()
 
   return (
     <Profile 

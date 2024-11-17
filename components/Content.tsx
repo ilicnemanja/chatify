@@ -13,7 +13,7 @@ import { useTheme } from "next-themes";
 import FriendsIcon from "./icons/FriendsIcon";
 import FullscreenToggle from "./FullscreenToggle";
 
-export function Content({ children, nickname }: { children: React.ReactNode, nickname: string }) {
+export function Content({ children, nickname }: { children: React.ReactNode, nickname: string | null }) {
     const [open, setOpen] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const { theme } = useTheme();

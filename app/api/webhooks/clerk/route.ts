@@ -80,6 +80,46 @@ export async function POST(req: Request) {
         }),
     });
     
+  } else if (eventType === 'user.updated') {
+    const {
+        id: clerkId,
+        username: username,
+        email_addresses: [{
+            email_address: email
+        }],
+        first_name: firstName,
+        last_name: lastName,
+        image_url: profilePicture,
+        updated_at: updatedAt,
+        last_active_at: lastActive
+    } = evt.data
+
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/update/${evt.data.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          clerkId,
+          username,
+          email,
+          firstName,
+          lastName,
+          profilePicture,
+          updatedAt,
+          lastActive
+        }),
+    });
+  } else if (eventType === 'user.deleted') {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/delete/${evt.data.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          clerkId: evt.data.id,
+        }),
+    });
   }
 
   return new Response('Webhook received', { status: 200 })

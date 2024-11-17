@@ -1,4 +1,3 @@
-import ProfileAvatar from "@/components/icons/ProfileAvatar";
 import { formatDateWithTime } from "@/lib/utils";
 import { IFriendsResponse } from "@/types/friend.type";
 import Image from "next/image";
@@ -27,18 +26,17 @@ const Friends = ({ friends }: { friends: IFriendsResponse }) => {
         <div className="grid sm:grid-cols-1 gap-y-8 mb-12 gap-0">
           {
             sortedCloseFriends.map((friend, index) => (
-              <div key={friend._id} className={`${index > 0 ? "-mt-5" : "mt-0"}`}>
+              <div key={friend.clerkId} className={`${index > 0 ? "-mt-5" : "mt-0"}`}>
                 <div className="flex flex-row items-center gap-2 pb-2">
                   <div className="w-12 h-12 overflow-hidden rounded-full border-2 border-gray-200 bg-gray-200">
                     <Link href={`/profile/${friend.username}`}>
-                      {friend.profilePicture && <Image 
+                      <Image 
                         src={friend.profilePicture} 
                         alt="Placeholder image" 
                         width={48} 
                         height={48} 
                         className="object-cover cursor-pointer" 
-                      />}
-                      {!friend.profilePicture && <ProfileAvatar />}
+                      />
                     </Link>
                   </div>
                   <div>
@@ -47,7 +45,7 @@ const Friends = ({ friends }: { friends: IFriendsResponse }) => {
                         {friend.firstName} {friend.lastName}
                       </p>
                     </Link>
-                    {friend?.lastActive && <span className="text-gray-400 text-sm font-sour-gummy">last active {formatDateWithTime(friend.lastActive)}</span>}
+                    <span className="text-gray-400 text-sm font-sour-gummy">last active {formatDateWithTime(friend.lastActive)}</span>
                   </div>
                 </div>
                 {index < sortedCloseFriends.length-1 && <hr className="w-[90%] text-neutral-200 dark:border-neutral-800" />}
@@ -62,18 +60,17 @@ const Friends = ({ friends }: { friends: IFriendsResponse }) => {
         <div className="grid sm:grid-cols-1 gap-y-8 mb-12 gap-0">
           {
             sortedAllFriends.map((friend, index) => (
-              <div key={friend._id} className={`${index > 0 ? "-mt-5" : "mt-0"}`}>
+              <div key={friend.clerkId} className={`${index > 0 ? "-mt-5" : "mt-0"}`}>
                 <div className="flex flex-row items-center gap-2 pb-2">
                   <div className="w-12 h-12 overflow-hidden rounded-full border-2 border-gray-200 bg-gray-200">
                     <Link href={`/profile/${friend.username}`}>
-                      {friend.profilePicture && <Image 
+                      <Image 
                         src={friend.profilePicture} 
                         alt="Placeholder image" 
                         width={48} 
                         height={48} 
                         className="object-cover cursor-pointer" 
-                      />}
-                      {!friend.profilePicture && <ProfileAvatar />}
+                      />
                     </Link>
                   </div>
                   <div>
@@ -82,7 +79,7 @@ const Friends = ({ friends }: { friends: IFriendsResponse }) => {
                         {friend.firstName} {friend.lastName}
                       </p>
                     </Link>
-                    {friend?.lastActive && <span className="text-gray-400 text-sm font-sour-gummy">last active {formatDateWithTime(friend.lastActive)}</span>}
+                    <span className="text-gray-400 text-sm font-sour-gummy">last active {formatDateWithTime(friend.lastActive)}</span>
                   </div>
                 </div>
                 {index < sortedAllFriends.length-1 && <hr className="w-[90%] text-neutral-200 dark:border-neutral-800" />}

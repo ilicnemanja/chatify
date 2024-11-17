@@ -1,12 +1,12 @@
 export interface IUser {
-    _id: string;
+    clerkId: string;
     firstName: string;
     lastName: string;
-    bio: string;
+    bio?: string;
     username: string;
     email: string;
-    profilePicture?: string;
-    lastActive?: Date
-    createdAt?: Date
-    updatedAt?: Date
+    profilePicture: string;
+    lastActive: string
+    createdAt: string
+    updatedAt: string
 }

@@ -6,7 +6,7 @@ const DummyChats1 = [
   {
     id: 123,
     name: "Dejana Kokot",
-    lastActive: new Date(Date.now()),
+    lastActive: "2024-11-17T12:04:30.746+00:00",
     profilePicture: "https://images.dog.ceo/breeds/finnish-lapphund/mochilamvan.jpg",
     borderColor: "#221523",
     bgColor: "#AA5486",
@@ -15,7 +15,7 @@ const DummyChats1 = [
   {
     id: 1,
     name: "Milos Djukic",
-    lastActive: new Date(Date.now()),
+    lastActive: "2024-11-17T12:04:30.746+00:00",
     profilePicture: "https://images.dog.ceo/breeds/poodle-standard/n02113799_3278.jpg",
     borderColor: "#0F2929",
     bgColor: "#FF2929",
@@ -24,7 +24,7 @@ const DummyChats1 = [
   {
     id: 2,
     name: "Nikola Jovanovic",
-    lastActive: new Date(Date.now()),
+    lastActive: "2024-11-17T12:04:30.746+00:00",
     profilePicture: "https://images.dog.ceo/breeds/terrier-silky/n02097658_8053.jpg",
     borderColor: "#91489C",
     bgColor: "#9EDF9C",
@@ -33,7 +33,7 @@ const DummyChats1 = [
   {
     id: 3,
     name: "Mihajlo Miladinovic",
-    lastActive: new Date(Date.now()),
+    lastActive: "2024-11-17T12:04:30.746+00:00",
     profilePicture: "https://images.dog.ceo/breeds/groenendael/n02105056_5668.jpg",
     borderColor: "#163A9C",
     bgColor: "#563A9C",
@@ -42,7 +42,7 @@ const DummyChats1 = [
   {
     id: 4,
     name: "Miljan Pantovic",
-    lastActive: new Date(Date.now()),
+    lastActive: "2024-11-17T12:04:30.746+00:00",
     profilePicture: "https://images.dog.ceo/breeds/vizsla/n02100583_14017.jpg",
     borderColor: "#2FF",
     bgColor: "#FFF",

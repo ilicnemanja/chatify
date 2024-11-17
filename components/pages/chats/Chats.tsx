@@ -1,54 +1,54 @@
-import { formatDateWithTime } from "@/lib/utils";
-import Image from "next/image";
+// import { formatDateWithTime } from "@/lib/utils";
+// import Image from "next/image";
 import React from "react";
 
-const DummyChats1 = [
-  {
-    id: 123,
-    name: "Dejana Kokot",
-    lastActive: "2024-11-17T12:04:30.746+00:00",
-    profilePicture: "https://images.dog.ceo/breeds/finnish-lapphund/mochilamvan.jpg",
-    borderColor: "#221523",
-    bgColor: "#AA5486",
-    isClosed: true,
-  },
-  {
-    id: 1,
-    name: "Milos Djukic",
-    lastActive: "2024-11-17T12:04:30.746+00:00",
-    profilePicture: "https://images.dog.ceo/breeds/poodle-standard/n02113799_3278.jpg",
-    borderColor: "#0F2929",
-    bgColor: "#FF2929",
-    isClosed: true,
-  },
-  {
-    id: 2,
-    name: "Nikola Jovanovic",
-    lastActive: "2024-11-17T12:04:30.746+00:00",
-    profilePicture: "https://images.dog.ceo/breeds/terrier-silky/n02097658_8053.jpg",
-    borderColor: "#91489C",
-    bgColor: "#9EDF9C",
-    isClosed: true,
-  },
-  {
-    id: 3,
-    name: "Mihajlo Miladinovic",
-    lastActive: "2024-11-17T12:04:30.746+00:00",
-    profilePicture: "https://images.dog.ceo/breeds/groenendael/n02105056_5668.jpg",
-    borderColor: "#163A9C",
-    bgColor: "#563A9C",
-    isClosed: true,
-  },
-  {
-    id: 4,
-    name: "Miljan Pantovic",
-    lastActive: "2024-11-17T12:04:30.746+00:00",
-    profilePicture: "https://images.dog.ceo/breeds/vizsla/n02100583_14017.jpg",
-    borderColor: "#2FF",
-    bgColor: "#FFF",
-    isClosed: false,
-  },
-];
+// const DummyChats1 = [
+//   {
+//     id: 123,
+//     name: "Dejana Kokot",
+//     lastActive: "2024-11-17T12:04:30.746+00:00",
+//     profilePicture: "https://images.dog.ceo/breeds/finnish-lapphund/mochilamvan.jpg",
+//     borderColor: "#221523",
+//     bgColor: "#AA5486",
+//     isClosed: true,
+//   },
+//   {
+//     id: 1,
+//     name: "Milos Djukic",
+//     lastActive: "2024-11-17T12:04:30.746+00:00",
+//     profilePicture: "https://images.dog.ceo/breeds/poodle-standard/n02113799_3278.jpg",
+//     borderColor: "#0F2929",
+//     bgColor: "#FF2929",
+//     isClosed: true,
+//   },
+//   {
+//     id: 2,
+//     name: "Nikola Jovanovic",
+//     lastActive: "2024-11-17T12:04:30.746+00:00",
+//     profilePicture: "https://images.dog.ceo/breeds/terrier-silky/n02097658_8053.jpg",
+//     borderColor: "#91489C",
+//     bgColor: "#9EDF9C",
+//     isClosed: true,
+//   },
+//   {
+//     id: 3,
+//     name: "Mihajlo Miladinovic",
+//     lastActive: "2024-11-17T12:04:30.746+00:00",
+//     profilePicture: "https://images.dog.ceo/breeds/groenendael/n02105056_5668.jpg",
+//     borderColor: "#163A9C",
+//     bgColor: "#563A9C",
+//     isClosed: true,
+//   },
+//   {
+//     id: 4,
+//     name: "Miljan Pantovic",
+//     lastActive: "2024-11-17T12:04:30.746+00:00",
+//     profilePicture: "https://images.dog.ceo/breeds/vizsla/n02100583_14017.jpg",
+//     borderColor: "#2FF",
+//     bgColor: "#FFF",
+//     isClosed: false,
+//   },
+// ];
 
 // const DummyChats2 = [
 //   {
@@ -75,7 +75,8 @@ const Chats = () => {
         <h3 className="dark:text-gray-200 text-2xl font-sour-gummy tracking-wide mb-4">
           Chats
         </h3>
-        <div className="grid lg:grid-cols-1 xl:grid-cols-2 gap-y-4 mb-12 gap-1 md:m-2">
+        {/* // TODO: work on this part, add chats */}
+        {/* <div className="grid lg:grid-cols-1 xl:grid-cols-2 gap-y-4 mb-12 gap-1 md:m-2">
           {
             DummyChats1.sort((a, b) => a.name.localeCompare(b.name)).map((chat) => (
               <div key={chat.id} className={`flex flex-row items-center gap-3 sm:w-[60%] md:w-[80%] lg:w-[65%] p-2 rounded-full border-1 hover:md:scale-[101%] hover:shadow-md shadow-inner bg-neutral-100 dark:bg-neutral-600 cursor-pointer`}>
@@ -97,7 +98,7 @@ const Chats = () => {
               </div>
             ))
           }
-        </div>
+        </div> */}
 
         {/* // TODO: work on this part, add groups */}
         {/* <h3 className="dark:text-gray-200 text-2xl font-sour-gummy tracking-wide mb-6">

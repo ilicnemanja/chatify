@@ -94,13 +94,12 @@ export async function POST(req: Request) {
         last_active_at: lastActive
     } = evt.data
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/update/${evt.data.id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/update/${clerkId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          clerkId,
           username,
           email,
           firstName,

@@ -6,10 +6,11 @@ import Link from "next/link";
 import React from "react";
 
 const Friends = ({ friends, friendRequests }: { friends: IFriendsResponse, friendRequests: IUser[] }) => {
-  const sortedCloseFriends = friends.closeFriends.sort((a, b) =>
+  const sortedCloseFriends = friends.closeFriends?.sort((a, b) =>
     a.firstName.localeCompare(b.firstName)
   );
-  const sortedAllFriends = friends.allFriends.sort((a, b) =>
+
+  const sortedAllFriends = friends.allFriends?.sort((a, b) =>
     a.firstName.localeCompare(b.firstName)
   );
 
@@ -33,7 +34,7 @@ const Friends = ({ friends, friendRequests }: { friends: IFriendsResponse, frien
             >
               Friend Requests
             </Link>
-            <span className="absolute -top-0 right-5 border opacity-90 border-red-500 rounded-full text-sm bg-red-500 text-white w-6 h-6 flex justify-center items-center">{friendRequests.length}</span>
+            {friendRequests.length ? <span className="absolute -top-0 right-5 border opacity-90 border-red-500 rounded-full text-base bg-red-500 text-white w-6 h-6 flex justify-center items-center font-sour-gummy m-auto">{friendRequests.length}</span> : null}
           </div>
         </div>
         
@@ -43,8 +44,8 @@ const Friends = ({ friends, friendRequests }: { friends: IFriendsResponse, frien
         <h3 className="text-gray-500 text-xl font-sour-gummy font-light">
           Close Friends
         </h3>
-        {friends.closeFriends.length > 0 ? (
-          <div className="grid sm:grid-cols-1 gap-y-8 mb-12 gap-0">
+        {friends.closeFriends?.length > 0 ? (
+          <div className="grid sm:grid-cols-1 mt-4 gap-y-8 mb-12 gap-0">
             {sortedCloseFriends.map((friend, index) => (
               <div
                 key={friend.clerkId}
@@ -89,8 +90,8 @@ const Friends = ({ friends, friendRequests }: { friends: IFriendsResponse, frien
         <h3 className="text-gray-500 text-xl font-sour-gummy mt-6 font-light">
           All Friends
         </h3>
-        {friends.allFriends.length > 0 ? (
-          <div className="grid sm:grid-cols-1 gap-y-8 mb-12 gap-0">
+        {friends.allFriends?.length > 0 ? (
+          <div className="grid sm:grid-cols-1 mt-4 gap-y-8 mb-12 gap-0">
             {sortedAllFriends.map((friend, index) => (
               <div
                 key={friend.clerkId}

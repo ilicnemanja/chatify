@@ -18,7 +18,7 @@ const Page = async () => {
   }
 
   return (
-    <FriendRequests users={data} />
+    <FriendRequests users={data} userId={user?.id} />
   )
 }
 

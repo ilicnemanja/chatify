@@ -7,7 +7,7 @@ const SearchUsersForm = ({ username }: { username?: string }) => {
   return (
     <Form
       action={`/friends/add-friend`}
-      className={`search-form flex flex-row items-center gap-3 w-2/5 p-2 rounded-md border-1 hover:md:scale-[101%] hover:shadow-md shadow-inner bg-neutral-100 dark:bg-neutral-600 cursor-pointer`}
+      className={`search-form flex flex-row items-center gap-3 w-full p-2 rounded-md border-1 hover:md:scale-[101%] hover:shadow-md shadow-inner bg-neutral-100 dark:bg-neutral-600 cursor-pointer`}
     >
       <Input
         type="username"

@@ -17,7 +17,7 @@ const Page = async ({ searchParams }: { searchParams: Promise<{ username?: strin
   }
 
   return (
-    <AddFriend data={data} username={username} currentUsername={user?.username} />
+    <AddFriend data={data} username={username} currentUsername={user?.username} currentUserId={user?.id} />
   )
 }
 

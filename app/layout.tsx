@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from '@/context/Theme';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const sourGummy = localFont({
   src: "./fonts/SourGummyVF.ttf",
@@ -37,6 +39,7 @@ export default function RootLayout({
               {children}
             </ThemeProvider>
           </div>
+          <ToastContainer />
         </body>
       </html>
     </ClerkProvider>

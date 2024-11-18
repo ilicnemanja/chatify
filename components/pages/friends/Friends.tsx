@@ -1,10 +1,11 @@
 import { formatDateWithTime } from "@/lib/utils";
 import { IFriendsResponse } from "@/types/friend.type";
+import { IUser } from "@/types/user.type";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Friends = ({ friends }: { friends: IFriendsResponse }) => {
+const Friends = ({ friends, friendRequests }: { friends: IFriendsResponse, friendRequests: IUser[] }) => {
   const sortedCloseFriends = friends.closeFriends.sort((a, b) =>
     a.firstName.localeCompare(b.firstName)
   );
@@ -18,12 +19,24 @@ const Friends = ({ friends }: { friends: IFriendsResponse }) => {
         <h2 className="dark:text-gray-200 text-2xl font-sour-gummy tracking-wide">
           Friends
         </h2>
-        <Link
-          href="/friends/add-friend"
-          className="dark:text-gray-200 text-base font-sour-gummy tracking-wide font-light md:pr-12"
-        >
-          + Add Friend
-        </Link>
+        <div className="flex items-center">
+          <Link
+            href="/friends/add-friend"
+            className="dark:text-gray-200 text-base font-sour-gummy tracking-wide font-light md:pr-12"
+          >
+            + Add Friend
+          </Link>
+          <div className="relative">
+            <Link
+              href="/friends/friend-requests"
+              className="dark:text-gray-200 text-base font-sour-gummy tracking-wide font-light md:pr-12"
+            >
+              Friend Requests
+            </Link>
+            <span className="absolute -top-0 right-5 border opacity-90 border-red-500 rounded-full text-sm bg-red-500 text-white w-6 h-6 flex justify-center items-center">{friendRequests.length}</span>
+          </div>
+        </div>
+        
       </div>
 
       <div className="overflow-y-auto h-full">

@@ -98,7 +98,7 @@ const FriendRequests = ({
                           }}
                           className="text-[#6439FF] dark:text-custom-200 text-base font-sour-gummy tracking-wide cursor-pointer mr-2 inline h-fit hover:text-[#4F75FF]"
                         >
-                          <BadgeMinus className="text-red-500" />
+                          <BadgeMinus className="text-red-500 hover:text-red-400" />
                         </button>
                         <button
                           onClick={async () => {
@@ -106,7 +106,7 @@ const FriendRequests = ({
                           }}
                           className="text-[#6439FF] dark:text-custom-200 text-base font-sour-gummy tracking-wide cursor-pointer mr-2 inline h-fit hover:text-[#4F75FF]"
                         >
-                          <BadgeCheck className="text-green-500" />
+                          <BadgeCheck className="text-green-500 hover:text-green-400" />
                         </button>
                       </div>
                     </div>

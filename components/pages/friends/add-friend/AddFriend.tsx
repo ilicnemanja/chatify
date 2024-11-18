@@ -118,9 +118,9 @@ const AddFriend = ({
                         onClick={async () => {
                           await onFriendRequestSendHandler(currentUserId, user.clerkId)
                         }}
-                        className="text-[#6439FF] dark:text-custom-200 text-base font-sour-gummy tracking-wide cursor-pointer mr-2 inline h-fit hover:text-[#4F75FF]"
+                        className="text-[#6439FF] dark:text-custom-200 text-base font-sour-gummy tracking-wide cursor-pointer mr-2 inline h-fit"
                       >
-                        <UserRoundPlus />
+                        <UserRoundPlus className="hover:text-custom-50" />
                       </button>}
                       {user.username === currentUsername && <span className="text-base font-sour-gummy tracking-wide mr-2 inline h-fit">You</span>}
                     </div>

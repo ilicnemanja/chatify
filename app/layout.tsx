@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from '@/context/Theme';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import CustomLoader from "@/components/CustomLoader";
 
 const sourGummy = localFont({
   src: "./fonts/SourGummyVF.ttf",
@@ -18,11 +19,49 @@ export const metadata: Metadata = {
   description: "Chatify is a chat application built with Next.js. You can sign in, create channels, and chat with your friends and family.",
 };
 
-export default function RootLayout({
+const RootLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) =>{
+
+  // AbortController to handle fetch timeout
+  const checkAPIHealth = async () => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 4500); // Timeout slightly below Vercel's 5s limit
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/health`, {
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+      return response.ok;
+    } catch {
+      clearTimeout(timeout);
+      return false; // Consider the API unavailable on error or timeout
+    }
+  };
+
+  const isAPIHealthy = await checkAPIHealth();
+
+  if (!isAPIHealthy) {
+    return (
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${sourGummy.variable} antialiased`}
+        >
+          <div className="flex flex-col justify-center items-center my-auto h-screen w-full" suppressHydrationWarning>
+            <h1 className="mb-2 font-semibold">The API is currently unavailable.</h1>
+            <h2 className="mb-5">
+              Please wait 50s while the connection is being established and refresh the page again.
+            </h2>
+            <CustomLoader />
+          </div>
+        </body>
+      </html>
+    );
+  }
+
   return (
     <ClerkProvider afterSignOutUrl="/sign-in">
       <html lang="en" suppressHydrationWarning>
@@ -45,3 +84,5 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
+
+export default RootLayout;

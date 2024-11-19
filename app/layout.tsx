@@ -52,7 +52,7 @@ const RootLayout = async ({
         >
           <div className="flex flex-col justify-center items-center my-auto h-screen w-full" suppressHydrationWarning>
             <h1 className="mb-2 font-semibold">The API is currently unavailable.</h1>
-            <h2 className="mb-5">
+            <h2 className="mb-5 text-center">
               Please wait 50s while the connection is being established and refresh the page again.
             </h2>
             <CustomLoader />

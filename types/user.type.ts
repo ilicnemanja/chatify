@@ -11,3 +11,18 @@ export interface IUser {
     createdAt: string
     updatedAt: string
 }
+
+export interface IUserWithFriendRequests {
+    _id?: string;
+    clerkId: string;
+    firstName: string;
+    lastName: string;
+    bio?: string;
+    username: string;
+    email: string;
+    profilePicture: string;
+    lastActive: string
+    createdAt: string
+    updatedAt: string
+    isFriendRequestSent: boolean
+}

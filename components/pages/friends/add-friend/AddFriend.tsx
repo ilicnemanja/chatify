@@ -1,13 +1,12 @@
 "use client"
 
-import { IUser } from "@/types/user.type";
+import { IUserWithFriendRequests } from "@/types/user.type";
 import SearchUsersForm from "./SearchUsersForm";
 import Image from "next/image";
 import Link from "next/link";
-import { UserRoundPlus } from 'lucide-react';
+import { UserRoundPlus, UserRoundX } from 'lucide-react';
 import { Bounce, toast } from "react-toastify"
-// import { useState } from "react";
-
+import { useEffect, useState } from "react";
 
 const AddFriend = ({
   data,
@@ -15,12 +14,64 @@ const AddFriend = ({
   currentUsername,
   currentUserId
 }: {
-  data: IUser[];
+  data: IUserWithFriendRequests[];
   username: string | undefined;
   currentUsername: string | null | undefined;
   currentUserId: string | null | undefined;
 }) => {
-  // const [users, setUsers] = useState(data)
+  const [users, setUsers] = useState(data)
+
+  const onFriendRequestRejectHandler = async (userId: string | null | undefined, friendId: string) => {
+    if (!userId) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${userId}/reject-friend-request/${friendId}`, {
+        method: "POST"
+      });
+
+      if (response.ok) {
+
+        const userForUpdate = users.find((user) => user.clerkId === friendId);
+
+        if (userForUpdate) {
+          userForUpdate.isFriendRequestSent = false;
+        }
+
+        setUsers(prevState => [...prevState]);
+
+        toast.success('Friend request removed!', {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+        
+      } else {
+        if (response.status == 304) {
+          toast.error("Friend request already removed!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          })
+        }
+      }
+    } catch (error) {
+      console.log("Error: ", error)
+    }
+  }
 
   const onFriendRequestSendHandler = async (userId: string | null | undefined, friendId: string) => {
     if (!userId) {
@@ -33,7 +84,16 @@ const AddFriend = ({
       });
 
       if (response.ok) {
-        toast.success('Friend request Sent!', {
+
+        const userForUpdate = users.find((user) => user.clerkId === friendId);
+
+        if (userForUpdate) {
+          userForUpdate.isFriendRequestSent = true;
+        }
+
+        setUsers(prevState => [...prevState]);
+
+        toast.success('Friend request sent!', {
           position: "bottom-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -44,6 +104,7 @@ const AddFriend = ({
           theme: "light",
           transition: Bounce,
         });
+
       } else {
         if (response.status == 304) {
           toast.error("Friend request already sent!", {
@@ -64,6 +125,10 @@ const AddFriend = ({
     }
   }
 
+  useEffect(() => {
+    setUsers(data)
+  }, [data])
+
   return (
     <div className="md:h-4/5">
       <div className="flex flex-col justify-center items-center md:w-full lg:w-2/5 mx-auto p-4 lg:p-0">
@@ -83,8 +148,8 @@ const AddFriend = ({
 
       <div className="overflow-y-auto h-full">
         <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-4 mb-12 gap-4 p-4">
-          {data.length
-            ? data.map((user: IUser) => (
+          {users.length
+            ? users.map((user: IUserWithFriendRequests) => (
                 <div
                   key={user._id}
                   className={`${
@@ -115,23 +180,37 @@ const AddFriend = ({
                         </p>
                       </div>
                     </Link>
-                    <div className="flex items-center justify-center">
-                      {user.username != currentUsername && <button
-                        onClick={async () => {
-                          await onFriendRequestSendHandler(currentUserId, user.clerkId)
-                        }}
-                        className="text-[#6439FF] dark:text-custom-200 text-base font-sour-gummy tracking-wide cursor-pointer mr-2 inline h-fit"
-                      >
-                        <UserRoundPlus className="hover:text-custom-50" />
-                      </button>}
-                      {user.username === currentUsername && <span className="text-base font-sour-gummy tracking-wide mr-2 inline h-fit">You</span>}
-                    </div>
+                    {user?.isFriendRequestSent ? (
+                      <div className="flex items-center justify-center">
+                        <button
+                          onClick={async () => {
+                            await onFriendRequestRejectHandler(currentUserId, user.clerkId)
+                          }}
+                          className="dark:text-custom-200 text-base font-sour-gummy tracking-wide cursor-pointer mr-2 inline h-fit"
+                        >
+                          <UserRoundX className="hover:text-red-300 text-red-500" />
+                        </button>
+                        {user.username === currentUsername && <span className="text-base font-sour-gummy tracking-wide mr-2 inline h-fit">You</span>}
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center">
+                        {user.username != currentUsername && <button
+                          onClick={async () => {
+                            await onFriendRequestSendHandler(currentUserId, user.clerkId)
+                          }}
+                          className="dark:text-custom-200 text-base font-sour-gummy tracking-wide cursor-pointer mr-2 inline h-fit"
+                        >
+                          <UserRoundPlus className="hover:text-green-300 text-green-500" />
+                        </button>}
+                        {user.username === currentUsername && <span className="text-base font-sour-gummy tracking-wide mr-2 inline h-fit">You</span>}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))
             : null}
         </div>
-        {username && !data.length && (
+        {username && !users.length && (
           <h3 className="dark:text-neutral-200 text-xl font-sour-gummy m-auto mt-12 font-light flex justify-center items-center">
             No users found
           </h3>

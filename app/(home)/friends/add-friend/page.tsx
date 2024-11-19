@@ -6,15 +6,11 @@ const Page = async ({ searchParams }: { searchParams: Promise<{ username?: strin
   const username = (await searchParams)?.username;
   const user = await currentUser();
 
-  let data: IUser[] = [];
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${username}/all/${user?.id}`, {
+    method: "GET"
+  });
 
-  if (username) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${username}/all`);
-
-    if (response.ok) {
-      data = await response.json();
-    }
-  }
+  const data = await response.json() as IUser[];
 
   return (
     <AddFriend data={data} username={username} currentUsername={user?.username} currentUserId={user?.id} />

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { UserRoundPlus } from 'lucide-react';
 import { Bounce, toast } from "react-toastify"
+// import { useState } from "react";
 
 
 const AddFriend = ({
@@ -19,6 +20,7 @@ const AddFriend = ({
   currentUsername: string | null | undefined;
   currentUserId: string | null | undefined;
 }) => {
+  // const [users, setUsers] = useState(data)
 
   const onFriendRequestSendHandler = async (userId: string | null | undefined, friendId: string) => {
     if (!userId) {

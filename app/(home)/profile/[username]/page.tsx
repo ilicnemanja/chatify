@@ -1,8 +1,8 @@
-import Profile from '@/components/pages/profile/Profile'
+import Profile from "@/components/pages/profile/Profile";
+import { currentUser } from "@clerk/nextjs/server";
 // import { IPost } from '@/types/post.type'
-import { notFound } from 'next/navigation'
-import React from 'react'
-
+import { notFound } from "next/navigation";
+import React from "react";
 
 // const dummyPosts: IPost[] = [
 //   {
@@ -65,23 +65,29 @@ import React from 'react'
 // ]
 
 const Page = async ({ params }: { params: Promise<{ username: string }> }) => {
-
-  const username = (await params).username
-
+  const username = (await params).username;
+  const userCurrentObj = await currentUser();
+  const currentUserId = userCurrentObj?.id;
+  const currentUserUsername = userCurrentObj?.username;
 
   // TODO: Fetch user and posts from API
 
-  const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${username}`).then(res => res.json());
+  const user = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${username}`
+  ).then((res) => res.json());
+
   // const posts = dummyPosts;
-  
-  if (!user) notFound()
+
+  if (!user) notFound();
 
   return (
-    <Profile 
+    <Profile
       user={user}
+      currentUserId={currentUserId}
+      currentUserUsername={currentUserUsername}
       // posts={posts}
     />
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

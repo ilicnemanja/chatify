@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 import { SignedIn, UserButton, useUser } from '@clerk/nextjs'
 import ChatIcon from "./icons/ChatIcon";
 import SettingsIcon from "./icons/SettingsIcon";
-import StatusIcon from "./icons/StatusIcon";
-import CommunityIcon from "./icons/CommunityIcon";
+// import StatusIcon from "./icons/StatusIcon";
+// import CommunityIcon from "./icons/CommunityIcon";
 import { useTheme } from "next-themes";
 import FriendsIcon from "./icons/FriendsIcon";
 import FullscreenToggle from "./FullscreenToggle";
@@ -40,13 +40,13 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
                 <ChatIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
             ),
         },
-        {
-            label: "Status",
-            href: "/status",
-            icon: (
-                <StatusIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
-            ),
-        },
+        // {
+        //     label: "Status",
+        //     href: "/status",
+        //     icon: (
+        //         <StatusIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
+        //     ),
+        // },
         {
             label: "Friends",
             href: "/friends",
@@ -54,13 +54,13 @@ export function Content({ children, nickname }: { children: React.ReactNode, nic
                 <FriendsIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
             ),
         },
-        {
-            label: "Communities",
-            href: "/communities",
-            icon: (
-                <CommunityIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
-            ),
-        },
+        // {
+        //     label: "Communities",
+        //     href: "/communities",
+        //     icon: (
+        //         <CommunityIcon primary={theme == "dark" ? "#E6EEFF" : "#292929"} secondary={theme == "dark" ? "#D9E4FF" : "#4400FF"} />
+        //     ),
+        // },
         {
             label: "Settings",
             href: "/settings",

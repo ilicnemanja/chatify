@@ -4,8 +4,21 @@ import { IUser } from "@/types/user.type";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { SquareUserRound, UserRoundPlus } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
-const Friends = ({ friends, friendRequests }: { friends: IFriendsResponse, friendRequests: IUser[] }) => {
+const Friends = ({
+  friends,
+  friendRequests,
+}: {
+  friends: IFriendsResponse;
+  friendRequests: IUser[];
+}) => {
   const sortedCloseFriends = friends.closeFriends?.sort((a, b) =>
     a.firstName.localeCompare(b.firstName)
   );
@@ -20,24 +33,41 @@ const Friends = ({ friends, friendRequests }: { friends: IFriendsResponse, frien
         <h2 className="dark:text-gray-200 text-2xl font-sour-gummy tracking-wide">
           Friends
         </h2>
-        <div className="flex items-center">
+        <div className="flex gap-8 md:mr-4">
           <Link
             href="/friends/add-friend"
-            className="dark:text-gray-200 text-base font-sour-gummy tracking-wide font-light md:pr-12"
+            className="dark:text-gray-200 text-base font-sour-gummy tracking-wide font-light"
           >
-            + Add Friend
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger><UserRoundPlus className="hover:text-neutral-400" size={30} /></TooltipTrigger>
+                <TooltipContent>
+                  <p>Add Friend</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </Link>
+          
           <div className="relative">
             <Link
               href="/friends/friend-requests"
-              className="dark:text-gray-200 text-base font-sour-gummy tracking-wide font-light md:pr-12"
+              className="dark:text-gray-200 text-base font-sour-gummy tracking-wide font-light"
             >
-              Friend Requests
+              <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger> <SquareUserRound className="hover:text-neutral-400" size={30} /></TooltipTrigger>
+                <TooltipContent>
+                  <p>Friend Requests</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             </Link>
-            {friendRequests.length ? <span className="absolute -top-0 right-5 border opacity-90 border-red-500 rounded-full text-base bg-red-500 text-white w-6 h-6 flex justify-center items-center font-sour-gummy m-auto">{friendRequests.length}</span> : null}
+            {friendRequests?.length ? (<span className="absolute -top-2 -right-1 border border-red-500 bg-red-500 rounded-full text-white font-sour-gummy text-base w-5 h-5 flex justify-center items-center">
+              {friendRequests.length}
+            </span>) : null}
           </div>
+
         </div>
-        
       </div>
 
       <div className="overflow-y-auto h-full">

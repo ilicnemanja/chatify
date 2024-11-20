@@ -7,7 +7,7 @@ const Page = async () => {
 
   const user = await currentUser()
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${user?.id}/friends`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/friends/${user?.id}`);
   const friends = await response.json() as IFriendsResponse;
 
   const response2 = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${user?.id}`);

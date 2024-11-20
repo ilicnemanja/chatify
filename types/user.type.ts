@@ -10,6 +10,7 @@ export interface IUser {
     lastActive: string
     createdAt: string
     updatedAt: string
-    isCloseFriend?: boolean
+    areCloseFriends?: boolean
+    areFriends?: boolean
     isFriendRequestSent?: boolean
 }

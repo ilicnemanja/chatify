@@ -7,7 +7,7 @@ import { IUser } from "@/types/user.type";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { Star } from "lucide-react";
+import { Star, OctagonMinus } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -36,7 +36,7 @@ const Profile = ({
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${userId}/add-close-friend/${friendId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/friends/${userId}/add-close-friend/${friendId}`,
         {
           method: "POST",
         }
@@ -82,7 +82,7 @@ const Profile = ({
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${userId}/remove-close-friend/${friendId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/friends/${userId}/remove-close-friend/${friendId}`,
         {
           method: "POST",
         }
@@ -101,7 +101,88 @@ const Profile = ({
           transition: Bounce,
         });
       } else {
-        toast.error("Error removing frpm close friend!", {
+        toast.error("Error removing from close friend!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const removeAcceptedFriendRequest = async (
+    userId: string | undefined,
+    friendId: string | undefined
+  ) => {
+    if (!userId || !friendId) {
+      return;
+    }
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${userId}/remove-accepted-friend-request/${friendId}`,
+        {
+          method: "POST",
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Removed friend!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      } else {
+        toast.error("Error in removeAcceptedFriendRequest!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const removeFriend = async (
+    userId: string | undefined,
+    friendId: string | undefined
+  ) => {
+    if (!userId || !friendId) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/friends/${userId}/remove-friend/${friendId}`,
+        {
+          method: "POST",
+        }
+      );
+
+      if (response.ok) {
+        await removeAcceptedFriendRequest(userId, friendId);
+      } else {
+        toast.error("Error in removeFriend!", {
           position: "bottom-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -132,15 +213,17 @@ const Profile = ({
         </div>
         <div
           className={`relative ${
-            currentUserUsername !== user.username ? "-mb-8" : "-mb-2"
+            currentUserUsername !== user.username && user?.areFriends
+              ? "-mb-8"
+              : "-mb-2"
           }`}
         >
           <h3 className="text-[#6439FF] dark:text-custom-200 text-xl font-sour-gummy tracking-wide">
             {user.firstName} {user.lastName}
           </h3>
-          {currentUserUsername !== user.username && (
+          {currentUserUsername !== user.username && user?.areFriends && (
             <>
-              {!user?.isCloseFriend ? (
+              {!user?.areCloseFriends ? (
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
@@ -188,6 +271,27 @@ const Profile = ({
                   </Tooltip>
                 </TooltipProvider>
               )}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Link
+                      href={`/profile/${user.username}`}
+                      className="absolute -top-0 -right-7"
+                      onClick={async () => {
+                        await removeFriend(currentUserId, user?.clerkId);
+                      }}
+                    >
+                      <OctagonMinus
+                        className="text-red-200 hover:text-red-400 absolute top-1 -right-7"
+                        size={20}
+                      />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Remove from friend list</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </>
           )}
         </div>

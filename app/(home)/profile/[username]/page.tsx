@@ -83,13 +83,13 @@ const Page = async ({ params }: { params: Promise<{ username: string }> }) => {
 
   if (user?.clerkId !== currentUserId) {
     const friendshipStatus = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${currentUserId}/friend-status/${user.clerkId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/friends/${currentUserId}/friend-status/${user.clerkId}`,
       {
         method: "GET",
       }
     ).then((res) => res.json())
 
-    user = { ...user, isCloseFriend: friendshipStatus.isCloseFriend };
+    user = { ...user, areCloseFriends: friendshipStatus.areCloseFriends, areFriends: friendshipStatus.areFriends };
   }
 
 

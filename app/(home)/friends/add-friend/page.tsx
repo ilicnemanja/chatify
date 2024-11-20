@@ -1,5 +1,5 @@
 import AddFriend from '@/components/pages/friends/add-friend/AddFriend'
-import { IUserWithFriendRequests } from '@/types/user.type';
+import { IUser } from '@/types/user.type';
 import { currentUser } from "@clerk/nextjs/server";
 
 const Page = async ({ searchParams }: { searchParams: Promise<{ username?: string }> }) => {
@@ -10,7 +10,7 @@ const Page = async ({ searchParams }: { searchParams: Promise<{ username?: strin
     method: "GET"
   });
 
-  const data = await response.json() as IUserWithFriendRequests[];
+  const data = await response.json() as IUser[];
 
   return (
     <AddFriend data={data} username={username} currentUsername={user?.username} currentUserId={user?.id} />

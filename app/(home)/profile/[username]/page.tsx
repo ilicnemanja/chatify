@@ -1,4 +1,5 @@
 import Profile from "@/components/pages/profile/Profile";
+import { IUser } from "@/types/user.type";
 import { currentUser } from "@clerk/nextjs/server";
 // import { IPost } from '@/types/post.type'
 import { notFound } from "next/navigation";
@@ -72,9 +73,25 @@ const Page = async ({ params }: { params: Promise<{ username: string }> }) => {
 
   // TODO: Fetch user and posts from API
 
-  const user = await fetch(
+  let user = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${username}`
-  ).then((res) => res.json());
+  ).then((res) => res.json()) as IUser | null;
+
+  if (!user) {
+    return notFound();
+  };
+
+  if (user?.clerkId !== currentUserId) {
+    const friendshipStatus = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/friend-requests/${currentUserId}/friend-status/${user.clerkId}`,
+      {
+        method: "GET",
+      }
+    ).then((res) => res.json())
+
+    user = { ...user, isCloseFriend: friendshipStatus.isCloseFriend };
+  }
+
 
   // const posts = dummyPosts;
 

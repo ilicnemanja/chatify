@@ -1,6 +1,6 @@
 "use client"
 
-import { IUserWithFriendRequests } from "@/types/user.type";
+import { IUser } from "@/types/user.type";
 import SearchUsersForm from "./SearchUsersForm";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +14,7 @@ const AddFriend = ({
   currentUsername,
   currentUserId
 }: {
-  data: IUserWithFriendRequests[];
+  data: IUser[];
   username: string | undefined;
   currentUsername: string | null | undefined;
   currentUserId: string | null | undefined;
@@ -149,7 +149,7 @@ const AddFriend = ({
       <div className="overflow-y-auto h-full">
         <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-4 mb-12 gap-4 p-4">
           {users.length
-            ? users.map((user: IUserWithFriendRequests) => (
+            ? users.map((user: IUser) => (
                 <div
                   key={user._id}
                   className={`${

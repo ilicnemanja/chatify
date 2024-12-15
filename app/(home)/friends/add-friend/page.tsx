@@ -2,6 +2,8 @@ import AddFriend from '@/components/pages/friends/add-friend/AddFriend'
 import { IUser } from '@/types/user.type';
 import { currentUser } from "@clerk/nextjs/server";
 
+export const dynamic  = 'force-dynamic'
+
 const Page = async ({ searchParams }: { searchParams: Promise<{ username?: string }> }) => {
   const username = (await searchParams)?.username;
   const user = await currentUser();

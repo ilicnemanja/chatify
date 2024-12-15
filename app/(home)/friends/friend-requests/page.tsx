@@ -2,6 +2,7 @@ import FriendRequests from "@/components/pages/friends/friend-requests/FriendReq
 import { IUser } from "@/types/user.type";
 import { currentUser } from "@clerk/nextjs/server";
 
+export const dynamic  = 'force-dynamic'
 
 const Page = async () => {
   const user = await currentUser();
